@@ -1,4 +1,4 @@
-#content {
+/* #content {
   margin-left: auto;
   margin-right: auto;
   width: 650px;
@@ -6,4 +6,40 @@
 
 #greeting-container {
   margin-top: 20px;
+} */
+
+#collapsefoot {
+  color: white;
+}
+
+.img-resize {
+  height: 350px;
+  width: 19%;
+}
+.aboutme-pic {
+  background-color: #8db3d3;
+  color: aliceblue;
+}
+
+.aboutme-para {
+  background-color: white;
+  color:#555555;
+}
+
+.aboutme-foot {
+  background-color: grey;
+  color: white;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+.padded {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.description {
+  padding-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 55%;
 }
