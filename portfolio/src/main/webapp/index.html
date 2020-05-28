@@ -1,28 +1,35 @@
 <!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale-1">
-  <title> Welcome to.. Me </title>
+  <title> Welcome to Me </title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
-
+  
   <div class="container-fluid text-center padded aboutme-para">
-    <h1 class="bolded"> Who, me? </h1>
-    <blockquote> 
-      <p> "The only thing that's pulling up is pin 14, am I right?" </p>
-      <footer> My thoughts on the serious subject of Arduinos </footer>
-    </blockquote>
-
-    <img src="/images/alex.jpg" class="img-circle img-resize" 
-      alt="Profile picture...which I use for everything. Consistency is key.">
+          
+      <div id="mySidenav">
+      <a href="#" id="projects"> Projects </a>
+      <a href="#" id="about"> About </a>
+      </div>
+    
+        <h1 class="bolded bigtext"> Who, me? </h1>
+        <blockquote> 
+          <p> "The only thing that's pulling up is pin 14, am I right?" </p>
+          <footer> My thoughts on the serious subject of Arduinos </footer>
+        </blockquote>
+        <img src="/images/alex.jpg" class="img-circle img-resize" alt="Profile picture." data-toggle="tooltip"
+        title="Profile picture...which I use for everything. Consistency is key.">
         
-    <p class="padded-top"> <a href="/files/resume.pdf" target="_blank"> the Sparknotes version </a> </p>
-    <p class="description"> My name is Alexandra Nwigwe and I'm a rising sophomore at Massachussetts Institute 
+        <p class="padded-top"> <a href="/files/resume.pdf" target="_blank" data-toggle="tooltip" title="that's a nice
+        resume. would be a shame if you didn't click on it"> the Sparknotes version </a> </p>
+        <p class="description"> My name is Alexandra Nwigwe and I'm a rising sophomore at Massachussetts Institute 
         of Technology. I'm studying electrical engineering and computer science with a minor in architecture. 
         I've always loved working on projects that incorporate design, hardware, and code. Because of this, 
         when on campus, you can often find me in a Makerspace or similar workshop of the sort! 
-    </p>
+        </p>   
   </div>
+
   <footer class="container-fluid text-center aboutme-foot">
     <a id="collapsefoot" data-toggle="collapse" href="#collapse1">
       <span class="glyphicon glyphicon-headphones"> </span>  After Hours

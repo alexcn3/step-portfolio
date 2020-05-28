@@ -16,6 +16,10 @@
   color: black;
 }
 
+.bigtext {
+  font-size: 50px;
+}
+
 .aboutme-foot {
   background-color: grey;
   color: white;
@@ -34,10 +38,38 @@
   padding-top: 15px;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 40%;
   font-size: 17px;
 }
 
 .bolded {
   font-weight: bold;
+}
+
+#mySidenav a {
+  position: absolute;
+  left: -75px;
+  transition: 0.3s;
+  padding: 20px;
+  padding-left: 5px;
+  padding-right: 50px;
+  width: 110px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  border-radius: 0 5px 5px 0;
+}
+
+#mySidenav a:hover {
+  left: 0;
+}
+
+#about {
+  top: 20px;
+  background-color: #8db3d3; 
+}
+
+#projects {
+  top: 100px;
+  background-color: #8db3d3;
 }
