@@ -6,6 +6,7 @@
   height: 350px;
   width: 19%;
 }
+
 .aboutme-pic {
   background-color: #8db3d3;
   color: aliceblue;
@@ -13,7 +14,7 @@
 
 .aboutme-para {
   background-color: white;
-  color: black;
+  color: #8db3d3;
 }
 
 .bigtext {
@@ -35,6 +36,7 @@
     padding-top: 85px;
 }
 .description {
+  color: grey;
   padding-top: 15px;
   margin-left: auto;
   margin-right: auto;
@@ -72,4 +74,13 @@
 #projects {
   top: 100px;
   background-color: #8db3d3;
+}
+
+.carousel-inner img {
+  margin: auto;
+}
+
+.righticon {
+  right: 0;
+  left: auto;
 }
