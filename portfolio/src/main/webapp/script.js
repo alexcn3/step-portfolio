@@ -13,18 +13,18 @@
 // limitations under the License.
 
 /**
- * Adds a random greeting to the page.
+ * Adds a random entertainment suggestion to the page.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+function addRecommendation() {
+  const recommendations =
+      ['Rosie by Loveleo', 'A Good Song Never Dies by Saint Motel ', 'Treacherous Doctor by Wallows', 
+      'Freaking Out by The Wrecks', 'Klink by Smino', 'Catch 22 by Joseph Heller', 'Wolf by Wold by Ryan Graudin',
+      'Talking to Strangers by Malcolm Gladwell', 'Vicious by V.E. Schwab', 'Dangerous Girls by Abigail Haas', 
+      'Nikita (TV)', 'iZombie (TV)', 'Happy Endings (TV)', 'Everything Sucks (TV)', 'American Vandal (TV)'];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  const recommendation = recommendations[Math.floor(Math.random() * recommendations.length)];
 
   // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  const recommendationContainer = document.getElementById('rec-container');
+  recommendationContainer.innerText = recommendation;
 }
-
-
