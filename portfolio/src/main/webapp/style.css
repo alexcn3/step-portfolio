@@ -6,6 +6,7 @@
   height: 350px;
   width: 19%;
 }
+
 .aboutme-pic {
   background-color: #8db3d3;
   color: aliceblue;
@@ -13,7 +14,7 @@
 
 .aboutme-para {
   background-color: white;
-  color: black;
+  color: #8db3d3;
 }
 
 .bigtext {
@@ -35,6 +36,7 @@
     padding-top: 85px;
 }
 .description {
+  color: grey;
   padding-top: 15px;
   margin-left: auto;
   margin-right: auto;
@@ -46,7 +48,7 @@
   font-weight: bold;
 }
 
-#mySidenav a {
+#my-sidenav a {
   position: absolute;
   left: -75px;
   transition: 0.3s;
@@ -60,7 +62,7 @@
   border-radius: 0 5px 5px 0;
 }
 
-#mySidenav a:hover {
+#my-sidenav a:hover {
   left: 0;
 }
 
@@ -73,3 +75,69 @@
   top: 100px;
   background-color: #8db3d3;
 }
+
+.carousel-inner img {
+  margin: auto;
+}
+
+.righticon {
+  right: 0;
+  left: auto;
+}
+
+.project-des {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+
+}
+
+.typewriter {
+  width: auto;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0 auto;
+  border-right: .10em solid grey;
+  white-space: nowrap;
+  animation: typing 3.5s steps(30, end), blink-caret .5s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 19% }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #8db3d3;
+}
+
+.item:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.icon-resize {
+  height: 2%;
+  width: 2%;
+}
+
