@@ -4,6 +4,8 @@
   <title> Welcome to Me </title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="script.js"></script>
   
   <div class="container-fluid text-center padded aboutme-para">
@@ -39,9 +41,33 @@
   </div>
 
   <footer class="container-fluid text-center aboutme-foot">
-    <a id="collapsefoot" data-toggle="collapse" href="#collapse1">
+    <a id="collapse-foot" data-toggle="collapse" href="#collapse1">
       <span class="glyphicon glyphicon-headphones" data-toggle="tooltip" title="click for a surprise!"> </span>  
       After Hours
       <span class="glyphicon glyphicon-headphones"> </span> </a>
+    <div id="collapse1" class="collapse">
+      
+      <div class="padded row">
+        <div class="col-sm-4">
+          <img class="img-circle fave-resize" src="/images/books.jpeg" alt="books">
+        </div>
+        <div class="col-sm-4">
+          <img class="img-circle fave-resize" src="/images/music.jpeg" alt="music">
+        </div>
+        <div class="col-sm-4">
+          <img class="img-circle fave-resize" src="/images/tv.jpeg" alt="tv">
+        </div>
+      </div>
+      <div>
+        <h1 data-toggle="tooltip" title="these are" class="bigtext bolded"> A Few of My Favorite Things </h1>
+        <p class="small-padded foot-desc"> In my free time, I enjoy dancing and amateur choreographing, writing short stories, poetry, and
+        unfinished novels, and reading all of the aforemntioned (maybe finished novels instead, though), 
+        causing chaos in the kitchen either by cooking or baking, playing volleyball, graphic design, 
+        and just working on various art projects. </p>
+        <button onclick="addRecommendation()" type="button" class="btn btn-info"> What should you listen/watch/read tonight? </button>
+        <div class="small-padded yellow" id="rec-container"></div>
+      </div>
+      
+    </div>
   </footer>
   
