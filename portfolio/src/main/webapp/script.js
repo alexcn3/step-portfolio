@@ -28,3 +28,9 @@ function addRecommendation() {
   const recommendationContainer = document.getElementById('rec-container');
   recommendationContainer.innerText = recommendation;
 }
+
+async function getGreeting() {
+  const response = await fetch('/data');
+  const greeting = await response.text();
+  document.getElementById('greet-container').innerText = greeting;
+}
