@@ -31,6 +31,22 @@ function addRecommendation() {
 
 async function getGreeting() {
   const response = await fetch('/data');
-  const greeting = await response.text();
-  document.getElementById('greet-container').innerText = greeting;
+  const greeting = await response.json();
+  console.log(greeting);
+  const greetContainer = document.getElementById('greet-container');
+  greetContainer.innerHTML = '';
+//   for (Array i : greeting) {
+//     greetContainer.appendChild(createListElement(i));
+//   }
+  var i;
+  for (i = 0; i < greeting.length; i++) {
+    console.log(greeting[i]);
+    greetContainer.appendChild(createListElement(greeting[i]));
+  }
+}
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
