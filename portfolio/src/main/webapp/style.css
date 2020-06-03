@@ -104,7 +104,7 @@
   width: 60%;
   margin-left: auto;
   margin-right: auto;
-  font-size: 20px;
+  font-size: 18px;
 
 }
 
@@ -161,3 +161,12 @@
   width: 40%;
 }
 
+div#comment-names li,
+div#comment-body li {
+  list-style-type: none;
+}
+
+.comment-area {
+  background-color: grey;
+  color: white;
+}

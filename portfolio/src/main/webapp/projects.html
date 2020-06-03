@@ -17,69 +17,106 @@
     <h1 class="bolded bigtext typewriter">Projecting.</h1>
 
     <div id="my-carousel" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#my-carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#my-carousel" data-slide-to="1"></li>
-        <li data-target="#my-carousel" data-slide-to="2"></li>
-        <li data-target="#my-carousel" data-slide-to="2"></li>
-      </ol>
-
-    <div class="row padded">
-      <div class="col-sm-8">
-        <div class="carousel-inner">
-          <div class="item active">
-            <img src="/images/plantie.jpg" alt="Plant Growth Project">
-            <div class="overlay">
-              <div class="text">This is a plant growth aid and data collector that uses image proccessing to identify plants
+      <div class="row padded">
+        <div class="col-sm-8">
+          <div class="carousel-inner">
+            <div class="item active">
+              <img src="/images/plantie.jpg" alt="Plant Growth Project">
+              <div class="overlay">
+                <div class="text">This is a plant growth aid and data collector that uses image proccessing to identify plants
                 or Google's Speech-to-Text API if the user already knows their plant. It senses moisture and has scheduled LEDs
                 that change colors to reflect the time and duration of outdoor light. It calculates growth rate of a user's plant
                 and strives to optimize it.
+                </div>
               </div>
             </div>
-          </div>
-          <div class="item">
-            <img src="/images/physics.jpg" alt="Physics Simulations">
-            <div class="overlay">
-              <div class="text">This is a project that uses VPython to show animations and visualizations of electric and magnetic
+            <div class="item">
+              <img src="/images/physics.jpg" alt="Physics Simulations">
+              <div class="overlay">
+                <div class="text">This is a project that uses VPython to show animations and visualizations of electric and magnetic
                   fields in different scenarios. It also allowed me to experiment with Github Pages as the animations are embedded
                   in a website hosted by Github.
+                </div>
               </div>
             </div>
-          </div>
-          <div class="item">
-            <img src="/images/musicbox.jpg" alt="Music Box">
-            <div class="overlay">
-              <div class="text">This music box was made with laser-cutting wood parts for the box and using Fusion360 to CAD and 3D print
+            <div class="item">
+              <img src="/images/musicbox.jpg" alt="Music Box">
+              <div class="overlay">
+                <div class="text">This music box was made with laser-cutting wood parts for the box and using Fusion360 to CAD and 3D print
                   elements of the drum kit on top. 
+                </div>
               </div>
             </div>
-          </div>
-          <div class="item">
-            <img src="/images/collink.jpg" alt="Collink CSSI Project">
-            <div class="overlay">
-              <div class="text">This was the project I created at Google's CSSI program last summer. It is a website that aims to easily 
+            <div class="item">
+              <img src="/images/collink.jpg" alt="Collink CSSI Project">
+              <div class="overlay">
+                <div class="text">This was the project I created at Google's CSSI program last summer. It is a website that aims to easily 
                   connect students on campus where they can post events and if a student would like to attend, it automatically autofills
                   the event in their Google calendar. It also has a search option so a user can search the website's database for specific
                   events.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a class="carousel-control" href="#my-carousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="righticon carousel-control" href="#my-carousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <div class="padded col-sm-4">
+          <p class="project-des"> These are a few projects, some personal and some with teams,
+          that I've done over the past year. If you'd like to see some work before my freshman
+          year or work larger than these fun projects I embarked on, <a href="/files/resume.pdf" 
+          target="_blank"> click here! </a> </p>
+          <div class="padded">
+            <div class="text-center">
+              <a class="btn btn-info btn-rounded mb-4" data-toggle="modal" data-target="#my-modal"> 
+              Leave A Comment </a>
+            </div>
+            <a id="collapse-comments" onclick="getComments()" data-toggle="collapse" href="#comments">
+              <span class="glyphicon glyphicon-comment"> </span> See Comments </a>
+            <div id="comments" class="small-padded collapse">
+              <div class="row">
+                <div id="comment-names" class="col-sm-4 text-right">
+                </div>
+                <div id="comment-body" class="col-sm-5 text-left comment-area">
+                </div>
+                <div class="col-sm-3">
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-        <a class="carousel-control" href="#my-carousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="righticon carousel-control" href="#my-carousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-          <span class="sr-only">Next</span>
-        </a>
       </div>
-      <div class="padded col-sm-4">
-        <p class="project-des"> These are a few projects, some personal and some with teams,
-        that I've done over the past year. If you'd like to see some work before my freshman
-        year or work larger than these fun projects I embarked on, <a href="/files/resume.pdf" 
-        target="_blank"> click here! </a> </p>
     </div>
+
+    <div id="my-modal" class="modal fade" role="dialog" aria-labelledby="mymodal-label" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h4 class="modal-title font-weight-bold"> A Penny for Your Thoughts </h4>
+              <div class="modal-body mx-3">
+                <form action="/data" method="POST">
+                  <div class="md-form mb-5">
+                    <input type="text" name="comment-name" id="default-name" class="form-control">
+                    <label data-error="wrong" data-success="right" for="default-name"> Your name </label>
+                  </div>
+                  <div class="md-form mb-5">
+                    <input type="text" name="comment-body" id="default-comment" class="form-control">
+                  <label data-error="wrong" data-success="right" for="default-comment"> Your comment </label>
+                </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <input type="submit"/>
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
     </div>
   </div>

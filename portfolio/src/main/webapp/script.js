@@ -29,24 +29,25 @@ function addRecommendation() {
   recommendationContainer.innerText = recommendation;
 }
 
-async function getGreeting() {
+async function getComments() {
   const response = await fetch('/data');
-  const greeting = await response.json();
-  console.log(greeting);
-  const greetContainer = document.getElementById('greet-container');
-  greetContainer.innerHTML = '';
-//   for (Array i : greeting) {
-//     greetContainer.appendChild(createListElement(i));
-//   }
-  var i;
-  for (i = 0; i < greeting.length; i++) {
-    console.log(greeting[i]);
-    greetContainer.appendChild(createListElement(greeting[i]));
-  }
+  const comments = await response.json();
+  console.log(comments);
+  const commentNameContainer = document.getElementById('comment-names');
+  const commentBodyContainer = document.getElementById('comment-body');
+  commentNameContainer.innerHTML = '';
+  commentBodyContainer.innerHTML = '';
+  comments.forEach((comment) => {
+    commentNameContainer.appendChild(createCommentElement(comment, 0));
+    commentBodyContainer.appendChild(createCommentElement(comment, 1));
+  });
 }
 
-function createListElement(text) {
+
+function createCommentElement(text, position) {
+  commentComponent = text.toString().split(',', 2)[position];
+  console.log(commentComponent);
   const liElement = document.createElement('li');
-  liElement.innerText = text;
+  liElement.innerText = commentComponent;
   return liElement;
 }
