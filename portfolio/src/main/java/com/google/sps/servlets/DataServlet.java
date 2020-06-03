@@ -27,15 +27,6 @@ import com.google.gson.Gson;
 
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
-
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Gson gson = new Gson();
-    String json = gson.toJson(comments);
-    response.setContentType("application/json;");
-    response.getWriter().println(json);
-  }
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -46,7 +37,7 @@ public class DataServlet extends HttpServlet {
     Entity taskEntity = new Entity("Task");
     taskEntity.setProperty("name", commenter);
     taskEntity.setProperty("comment", comment);
-    taskEntity.setProperty("timestamp", timestamp)
+    taskEntity.setProperty("timestamp", timestamp);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(taskEntity);
 
