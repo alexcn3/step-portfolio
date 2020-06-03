@@ -32,7 +32,6 @@ function addRecommendation() {
 async function getComments() {
   const response = await fetch('/data');
   const comments = await response.json();
-  console.log(comments);
   const commentNameContainer = document.getElementById('comment-names');
   const commentBodyContainer = document.getElementById('comment-body');
   commentNameContainer.innerHTML = '';
@@ -46,7 +45,6 @@ async function getComments() {
 
 function createCommentElement(text, position) {
   commentComponent = text.toString().split(',', 2)[position];
-  console.log(commentComponent);
   const liElement = document.createElement('li');
   liElement.innerText = commentComponent;
   return liElement;

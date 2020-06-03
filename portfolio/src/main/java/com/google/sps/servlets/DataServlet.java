@@ -25,7 +25,7 @@ import com.google.gson.Gson;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  ArrayList<String[]> comments = new ArrayList<String[]>();
+  private ArrayList<String[]> comments = new ArrayList<String[]>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -39,8 +39,8 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String commenter = getParameter(request, "comment-name", "");
     String comment = getParameter(request, "comment-body", "");
-    String[] commentComplete = {commenter, comment};
-    comments.add(commentComplete);
+    String[] completeComment = {commenter, comment};
+    comments.add(completeComment);
     response.sendRedirect("/projects.html");
 
 
