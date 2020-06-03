@@ -37,15 +37,14 @@ async function getComments() {
   commentNameContainer.innerHTML = '';
   commentBodyContainer.innerHTML = '';
   comments.forEach((comment) => {
-    commentNameContainer.appendChild(createCommentElement(comment, 0));
-    commentBodyContainer.appendChild(createCommentElement(comment, 1));
+    commentNameContainer.appendChild(createCommentElement(comment.commenter));
+    commentBodyContainer.appendChild(createCommentElement(comment.comment));
   });
 }
 
 
-function createCommentElement(text, position) {
-  commentComponent = text.toString().split(',', 2)[position];
+function createCommentElement(text) {
   const liElement = document.createElement('li');
-  liElement.innerText = commentComponent;
+  liElement.innerText = text;
   return liElement;
 }
