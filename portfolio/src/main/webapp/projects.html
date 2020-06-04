@@ -77,16 +77,15 @@
             <div class="text-center">
               <a class="btn btn-info btn-rounded mb-4" data-toggle="modal" data-target="#my-modal"> 
               Leave A Comment </a>
+              <button onclick="deleteAllComments()" type="button" class="btn">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
             </div>
             <a id="collapse-comments" onclick="getComments()" data-toggle="collapse" href="#comments">
               <span class="glyphicon glyphicon-comment"> </span> See Comments </a>
             <div id="comments" class="small-padded collapse">
               <div class="row">
-                <div id="comment-names" class="col-sm-4 text-right">
-                </div>
-                <div id="comment-body" class="col-sm-5 text-left comment-area">
-                </div>
-                <div class="col-sm-3">
+                <div class="col-sm-12 scroll-comments" id="comment-container">
                 </div>
               </div>
             </div>

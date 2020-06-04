@@ -170,3 +170,9 @@ div#comment-body li {
   background-color: grey;
   color: white;
 }
+
+.scroll-comments {
+  height: 140px;
+  width: 80%;
+  overflow: scroll;
+}
