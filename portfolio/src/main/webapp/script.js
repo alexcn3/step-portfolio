@@ -29,8 +29,22 @@ function addRecommendation() {
   recommendationContainer.innerText = recommendation;
 }
 
-async function getGreeting() {
+async function getComments() {
   const response = await fetch('/data');
-  const greeting = await response.text();
-  document.getElementById('greet-container').innerText = greeting;
+  const comments = await response.json();
+  const commentNameContainer = document.getElementById('comment-names');
+  const commentBodyContainer = document.getElementById('comment-body');
+  commentNameContainer.innerHTML = '';
+  commentBodyContainer.innerHTML = '';
+  comments.forEach((comment) => {
+    commentNameContainer.appendChild(createCommentElement(comment.commenter));
+    commentBodyContainer.appendChild(createCommentElement(comment.comment));
+  });
+}
+
+
+function createCommentElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
