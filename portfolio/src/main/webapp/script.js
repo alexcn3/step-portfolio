@@ -32,19 +32,41 @@ function addRecommendation() {
 async function getComments() {
   const response = await fetch('/data');
   const comments = await response.json();
-  const commentNameContainer = document.getElementById('comment-names');
-  const commentBodyContainer = document.getElementById('comment-body');
-  commentNameContainer.innerHTML = '';
-  commentBodyContainer.innerHTML = '';
+  const commentContainer = document.getElementById('comment-container');
+  commentContainer.innerHTML = '';
   comments.forEach((comment) => {
-    commentNameContainer.appendChild(createCommentElement(comment.commenter));
-    commentBodyContainer.appendChild(createCommentElement(comment.comment));
+    commentContainer.appendChild(createCommentElement(comment));
   });
+  if (comments.length == 0) {
+    document.getElementById('comments').innerHTML = "No comments at this time :(";
+  }
 }
 
 
-function createCommentElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+function createCommentElement(commentObject) {
+  const rowElement = document.createElement('div');
+  rowElement.classList.add('row');
+  rowElement.appendChild(createCommentName(commentObject.commenter));
+  rowElement.appendChild(createCommentBody(commentObject.comment));
+  return rowElement;
 }
+
+function createCommentName(text) {
+  const colElement = document.createElement('div');
+  colElement.classList.add('col-sm-4', 'text-right');
+  colElement.innerHTML = text;
+  return colElement;
+}
+
+function createCommentBody(text) {
+  const colElement = document.createElement('div');
+  colElement.classList.add('col-sm-5', 'comment-area', 'text-left');
+  colElement.innerHTML = text;
+  return colElement;
+}
+
+async function deleteAllComments(id_list) {
+  const response = await fetch('/delete-data', {method: 'POST'});
+  document.getElementById('comments').classList.remove('in')
+}
+
