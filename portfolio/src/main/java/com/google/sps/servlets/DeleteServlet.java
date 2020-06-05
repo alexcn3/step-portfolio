@@ -17,6 +17,7 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.sps.data.Comment;
+import com.google.sps.data.Suggestion;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import java.io.IOException;
@@ -34,15 +35,24 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 public class DeleteServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
-    for (Entity entity : results.asIterable()) {
-      Key commentEntityKey = entity.getKey();
-      datastore.delete(commentEntityKey); 
+    if (request.getParameter("type").equals("comment")) {
+      Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+      deleteKeys(query);
+    } else if (request.getParameter("type").equals("suggestion")) {
+      Query query = new Query("Suggestion").addSort("timestamp", SortDirection.DESCENDING);
+      deleteKeys(query);
     }
+    
     response.setContentType("application/html;");
     response.getWriter().println();
-}
+  }
+
+  private void deleteKeys(Query queryObject) {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(queryObject);
+    for (Entity entity : results.asIterable()) {
+      Key entityKey = entity.getKey();
+      datastore.delete(entityKey); 
+    }
+  }
 }
