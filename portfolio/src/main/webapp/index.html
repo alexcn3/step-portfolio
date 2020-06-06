@@ -48,13 +48,26 @@
       
       <div class="padded row">
         <div class="col-sm-4">
-          <img class="img-circle fave-resize" src="/images/books.jpeg" alt="books">
+          <button class="transparent-button" type="button" onclick="getSpecificSug('book')">
+            <img class="img-circle fave-resize" src="/images/books.jpeg" alt="books">
+          </button>
         </div>
         <div class="col-sm-4">
-          <img class="img-circle fave-resize" src="/images/music.jpeg" alt="music">
+          <button class="transparent-button" type="button" onclick="getSpecificSug('music')">
+            <img class="img-circle fave-resize" src="/images/music.jpeg" alt="music">
+          </button>
+          <div id="user-sugs" class="small-padded collapse">
+            <h4 class="white bolded"> All User Suggestions </h4>
+            <p class="foot-desc"> If you'd like to see only see suggestions in a category, click on one of the 
+                photos above to only display suggestions in that photo's category. </p>
+            <div id="sugs" class="row">
+            </div>
+          </div>
         </div>
         <div class="col-sm-4">
-          <img class="img-circle fave-resize" src="/images/tv.jpeg" alt="tv">
+          <button class="transparent-button" type="button" onclick="getSpecificSug('tv')">
+            <img class="img-circle fave-resize" src="/images/tv.jpeg" alt="tv">
+          </button>
         </div>
       </div>
       <div>
@@ -65,8 +78,57 @@
         and just working on various art projects. </p>
         <button onclick="addRecommendation()" type="button" class="btn btn-info"> What should you listen/watch/read tonight? </button>
         <div class="small-padded yellow" id="rec-container"></div>
+        
+        <a class="white" data-toggle="modal" data-target="#sug-modal"> Share Your Own Recs! </a>
+        <button onclick="deleteAllRecs()" type="button" class="transparent-button btn">
+          <span class="white glyphicon glyphicon-trash"></span>
+        </button>        
+        <a id="collapse-sugs" onclick="getRecs()" data-toggle="collapse" href="#user-sugs" class="white">
+          See User Recs </a>
+        <div class="aboutme-sug">
+          <div id="sug-modal" class="modal fade" role="dialog" aria-labelledby="sugmodal-label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <div class="row">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="text-center col-sm-8">
+                      <h4 class="modal-title font-weight-bold w-100"> A Penny for Your Thoughts </h4>
+                    </div>
+                    <div class="col-sm-2">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="glyphicon glyphicon-remove"> </span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="modal-body mx-3">
+                    <form id="suggest-form" action="/suggestions" method="POST">
+                      <div class="row">
+                        <div class="col-sm-9">
+                           <label data-error="wrong" data-success="right" for="default-comment"> Your Suggestion </label>
+                           <input type="text" name="suggestion-body" id="default-comment" class="form-control" required>
+                        </div>
+                        <div class="col-sm-3">
+                          <label data-error="wrong" data-success="right" for="category-select"> Category </label>
+                          <select class="form-control text-center" name="category-select" id="category-select" form="suggest-form" required>
+                            <option value="music">Music</option>
+                            <option value="tv">TV</option>
+                            <option value="book">Book</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="modal-footer d-flex justify-content-center">
+                        <input class="btn btn-rounded" type="submit"/>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>       
+        </div>
       </div>
-      
     </div>
   </footer>
   

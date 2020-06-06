@@ -1,7 +1,7 @@
 <!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale-1">
-  <title> Welcome to Me </title>
+  <title> Tinker Tinker </title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
@@ -98,22 +98,33 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header text-center">
-            <h4 class="modal-title font-weight-bold"> A Penny for Your Thoughts </h4>
-              <div class="modal-body mx-3">
-                <form action="/data" method="POST">
-                  <div class="md-form mb-5">
-                    <input type="text" name="comment-name" id="default-name" class="form-control">
-                    <label data-error="wrong" data-success="right" for="default-name"> Your name </label>
-                  </div>
-                  <div class="md-form mb-5">
-                    <input type="text" name="comment-body" id="default-comment" class="form-control">
+            <div class="row">
+              <div class="col-sm-2">
+              </div>
+              <div class="text-center col-sm-8">
+                <h4 class="modal-title font-weight-bold w-100"> A Penny for Your Thoughts </h4>
+              </div>
+              <div class="col-sm-2">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span class="glyphicon glyphicon-remove"> </span>
+                </button>
+              </div>
+            </div>
+            <div class="modal-body mx-3">
+              <form action="/data" method="POST">
+                <div class="md-form mb-5">
+                  <input type="text" name="comment-name" id="default-name" class="form-control" required>
+                  <label data-error="wrong" data-success="right" for="default-name"> Your name </label>
+                </div>
+                <div class="md-form mb-5">
+                  <input type="text" name="comment-body" id="default-comment" class="form-control" required>
                   <label data-error="wrong" data-success="right" for="default-comment"> Your comment </label>
                 </div>
-                </div>
                 <div class="modal-footer d-flex justify-content-center">
-                  <input type="submit"/>
+                  <input class="btn btn-rounded" type="submit"/>
                 </div>
               </form>
+            </div>
           </div>
         </div>
       </div>

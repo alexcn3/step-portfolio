@@ -42,6 +42,42 @@ async function getComments() {
   }
 }
 
+async function getRecs() {
+  const response = await fetch('/suggestions');
+  const recs = await response.json();
+  showRecs(recs);
+}
+
+function showRecs(results) {
+  const recContainer = document.getElementById('sugs');
+  recContainer.innerHTML = '';
+  results.forEach((rec) => {
+    recContainer.appendChild(createRecElement(rec));
+  });
+  if (results.length == 0) {
+    recContainer.innerHTML = "No user suggestions :(";
+  }
+}
+
+function createRecElement(recObject) {
+  const liElement = document.createElement('li');
+  liElement.classList.add(getRecColor(recObject.category));
+  text = recObject.suggest.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  liElement.innerHTML = text;
+  return liElement;
+}
+
+function getRecColor(category) {
+  let color = 'white';
+  if (category == 'music') {
+    color = 'underline-blue';
+  } else if (category == 'tv') {
+    color = 'underline-yellow';
+  } else if (category == 'book') {
+    color = 'underline-pink';
+  }
+  return color;
+}
 
 function createCommentElement(commentObject) {
   const rowElement = document.createElement('div');
@@ -54,6 +90,7 @@ function createCommentElement(commentObject) {
 function createCommentName(text) {
   const colElement = document.createElement('div');
   colElement.classList.add('col-sm-4', 'text-right');
+  text = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
   colElement.innerHTML = text;
   return colElement;
 }
@@ -61,12 +98,29 @@ function createCommentName(text) {
 function createCommentBody(text) {
   const colElement = document.createElement('div');
   colElement.classList.add('col-sm-5', 'comment-area', 'text-left');
+  text = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
   colElement.innerHTML = text;
   return colElement;
 }
 
-async function deleteAllComments(id_list) {
-  const response = await fetch('/delete-data', {method: 'POST'});
+async function deleteAllComments() {
+  const params = new URLSearchParams();
+  params.append('type', 'comment');
+  const response = await fetch('/delete-data', {method: 'POST', body: params});
   document.getElementById('comments').classList.remove('in')
 }
 
+async function deleteAllRecs() {
+  const params = new URLSearchParams();
+  params.append('type', 'suggestion');
+  const response = await fetch('/delete-data', {method: 'POST', body: params});
+}
+
+
+async function getSpecificSug(category) {
+  const params = new URLSearchParams();
+  params.append('category', category);
+  const response = await fetch('/suggestions', {method: 'POST', body: params});
+  const recs = await response.json();
+  showRecs(recs);
+}

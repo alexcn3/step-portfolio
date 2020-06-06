@@ -20,7 +20,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.sps.data.Comment;
+import com.google.sps.data.Suggestion;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,46 +30,57 @@ import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
 
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
+@WebServlet("/suggestions")
+public class SuggestServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    showResults(response, "");
+  }
+  
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String userCategory = getParameter(request, "category", "");
+    if (userCategory.equals("")) {
+      String suggestion = getParameter(request, "suggestion-body", "");
+      String category = getParameter(request, "category-select", "");
+      long timestamp = System.currentTimeMillis();
+      Entity taskEntity = new Entity("Suggestion");
+      taskEntity.setProperty("suggest", suggestion);
+      taskEntity.setProperty("category", category);
+      taskEntity.setProperty("timestamp", timestamp);
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+      datastore.put(taskEntity);
+      response.sendRedirect("/index.html");
+    } else {
+       showResults(response, userCategory);
+    }
+  }
+
+  public void showResults(HttpServletResponse response, String sugCategory) throws IOException {
+    Query query = new Query("Suggestion").addSort("timestamp", SortDirection.DESCENDING);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
-    List<Comment> comments = new ArrayList<>();
+    List<Suggestion> suggestions = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
-      String commenter = (String) entity.getProperty("name");
-      String comment = (String) entity.getProperty("comment");
+      String suggestion = (String) entity.getProperty("suggest");
+      String category = (String) entity.getProperty("category");
       long timestamp = (long) entity.getProperty("timestamp");
-      Comment completeComment = new Comment(id, commenter, comment, timestamp);
-      comments.add(completeComment);
+      Suggestion completeSuggest = new Suggestion(id, suggestion, category, timestamp);
+      if (sugCategory.equals("")){
+        suggestions.add(completeSuggest);
+      } else if (sugCategory.equals(category)) {
+        suggestions.add(completeSuggest);
+      }
     }
 
     Gson gson = new Gson();
 
     response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(comments));
-  }
-  
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String commenter = getParameter(request, "comment-name", "");
-    String comment = getParameter(request, "comment-body", "");
-    long timestamp = System.currentTimeMillis();
-    Entity taskEntity = new Entity("Comment");
-    taskEntity.setProperty("name", commenter);
-    taskEntity.setProperty("comment", comment);
-    taskEntity.setProperty("timestamp", timestamp);
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(taskEntity);
-    response.sendRedirect("/projects.html");
-
-
+    response.getWriter().println(gson.toJson(suggestions));
   }
 
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
