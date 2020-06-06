@@ -14,7 +14,7 @@
 
 package com.google.sps.data;
 
-
+/** A user entertainment suggestion in the recommendations section*/
 public final class Suggestion {
 
   private final long id;
