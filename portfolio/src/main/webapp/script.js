@@ -124,3 +124,14 @@ async function getSpecificSug(category) {
   const recs = await response.json();
   showRecs(recs);
 }
+
+async function getSearchResults() {
+  const params = new URLSearchParams();
+  const searchForm = document.getElementById('search-form');
+  const searchTerm = searchForm.elements[0].value;
+  console.log(searchTerm);
+  params.append('search', searchTerm);
+  const response = await fetch('/suggestions', {method: 'POST', body: params});
+  const results = await response.json();
+  showRecs(results);
+}

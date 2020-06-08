@@ -60,7 +60,21 @@
             <h4 class="white bolded"> All User Suggestions </h4>
             <p class="foot-desc"> If you'd like to see only see suggestions in a category, click on one of the 
                 photos above to only display suggestions in that photo's category. </p>
-            <div id="sugs" class="row">
+            <form id="search-form">
+                <div class="row">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-3">
+                    <input class="form-control" type="text" name="search" id="search" required></input>
+                </div>
+                 <div class="col-sm-1">
+                    <button class="transparent-button form-search" type="button" onclick="getSearchResults()"> <span class="glyphicon glyphicon-search"> </span> </button>
+                </div>
+                 <div class="col-sm-4">
+                </div>
+                </div>
+            </form>
+            <div id="sugs" class="small-padded row">
             </div>
           </div>
         </div>
