@@ -29,6 +29,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
@@ -43,7 +45,7 @@ public class DataServlet extends HttpServlet {
     List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
-      String commenter = (String) entity.getProperty("name");
+      String commenter = (String) entity.getProperty("commenter");
       String comment = (String) entity.getProperty("comment");
       long timestamp = (long) entity.getProperty("timestamp");
       Comment completeComment = new Comment(id, commenter, comment, timestamp);
@@ -58,11 +60,16 @@ public class DataServlet extends HttpServlet {
   
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String commenter = getParameter(request, "comment-name", "");
+    UserService userService = UserServiceFactory.getUserService();
+    // String commenter = 
+    String nickname = getParameter(request, "comment-name", "");
     String comment = getParameter(request, "comment-body", "");
     long timestamp = System.currentTimeMillis();
     Entity taskEntity = new Entity("Comment");
-    taskEntity.setProperty("name", commenter);
+    if (nickname.equals("")) {
+      nickname = userService.getCurrentUser().getEmail();
+    }
+    taskEntity.setProperty("commenter", nickname);
     taskEntity.setProperty("comment", comment);
     taskEntity.setProperty("timestamp", timestamp);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();

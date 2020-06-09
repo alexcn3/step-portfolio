@@ -108,6 +108,11 @@
   background-color: #8db3d3;
 }
 
+#login {
+  top: 180px;
+  background-color: #9dc797;
+}
+
 .carousel-inner img {
   margin: auto;
 }
@@ -213,3 +218,13 @@ div#sugs li {
 .form-search {
   height: 34px;
 }
+
+button.disabled:hover span {
+  display:none
+}
+
+button.disabled:hover:before {
+  content:"Log in to comment!"
+}
+
+
