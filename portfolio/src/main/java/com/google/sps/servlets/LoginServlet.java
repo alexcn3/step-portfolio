@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
     String json = null;
 
     if (userService.isUserLoggedIn()) {
-      String logoutUrl = userService.createLogoutURL("/login");
+      String logoutUrl = userService.createLogoutURL("/");
       String email = userService.getCurrentUser().getEmail();
       if (email.equals("acnwigwe@google.com")) {
         json = convertToJson(logoutUrl, "admin");
@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
         json = convertToJson(logoutUrl, "true"); 
       }
     } else {
-      String loginUrl = userService.createLoginURL("/login");
+      String loginUrl = userService.createLoginURL("/");
       json = convertToJson(loginUrl, "false");
     }
 
