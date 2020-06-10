@@ -61,12 +61,11 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
-    // String commenter = 
     String nickname = getParameter(request, "comment-name", "");
     String comment = getParameter(request, "comment-body", "");
     long timestamp = System.currentTimeMillis();
     Entity taskEntity = new Entity("Comment");
-    if (nickname.equals("")) {
+    if (nickname.isEmpty()) {
       nickname = userService.getCurrentUser().getEmail();
     }
     taskEntity.setProperty("commenter", nickname);
