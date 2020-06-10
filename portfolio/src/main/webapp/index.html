@@ -8,12 +8,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="script.js"></script>
   
-  <div class="container-fluid text-center padded aboutme-para">
+
+<body onload="checkLogin()">
+  <div class="container-fluid text-center aboutme-para">
           
     <div id="my-sidenav">
-    <a href="index.html" id="about"> About </a>
-    <a href="projects.html" id="projects"> Projects </a>
+      <a href="index.html" id="about"> About </a>
+      <a href="projects.html" id="projects"> Projects </a>
+      <a href="#" id="login"></a>
     </div>
+  </div>
+  <div class="container-fluid padded text-center aboutme-para">
+
       <h1 class="bolded bigtext"> Who, me? </h1>
       <blockquote> 
         <p> "The only thing that's pulling up is pin 14, am I right?" </p>
@@ -94,7 +100,7 @@
         <div class="small-padded yellow" id="rec-container"></div>
         
         <a class="white" data-toggle="modal" data-target="#sug-modal"> Share Your Own Recs! </a>
-        <button onclick="deleteAllRecs()" type="button" class="transparent-button btn">
+        <button id="sug-delete" onclick="deleteAllRecs()" type="button" class="transparent-button btn" disabled>
           <span class="white glyphicon glyphicon-trash"></span>
         </button>        
         <a id="collapse-sugs" onclick="getRecs()" data-toggle="collapse" href="#user-sugs" class="white">
@@ -145,4 +151,5 @@
       </div>
     </div>
   </footer>
+</body>
   

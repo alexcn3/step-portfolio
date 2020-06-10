@@ -89,7 +89,7 @@ function createCommentElement(commentObject) {
 
 function createCommentName(text) {
   const colElement = document.createElement('div');
-  colElement.classList.add('col-sm-4', 'text-right');
+  colElement.classList.add('col-sm-5', 'text-right');
   text = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
   colElement.innerHTML = text;
   return colElement;
@@ -134,3 +134,35 @@ async function getSearchResults() {
   const results = await response.json();
   showRecs(results);
 }
+
+async function checkLogin() {
+  const response = await fetch('/login');
+  const result = await response.json();
+  loginContainer = document.getElementById('login');
+  loginContainer.href = result.logLink;
+  commentContainer = document.getElementById('leave-comment');
+
+  if (result.logCheck == 'true' || result.logCheck == 'admin'){ 
+    loginContainer.innerText = 'Log Out';
+    if (commentContainer) {
+      commentContainer.disabled = false;
+      commentContainer.classList.remove('disabled');
+    }
+  } else {
+    loginContainer.innerText = 'Log In';
+    if (commentContainer) {
+      commentContainer.disabled = true;
+      commentContainer.classList.add('disabled');
+    }
+  }
+
+  if (result.logCheck == 'admin') {
+    if (document.getElementById('comment-delete')){
+      document.getElementById('comment-delete').disabled = false;
+    } else if (document.getElementById('sug-delete')){
+      document.getElementById('sug-delete').disabled = false;
+    }
+  }
+}
+
+

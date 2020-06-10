@@ -8,15 +8,22 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   
+
+<body onload="checkLogin()">
   <div class="container-fluid text-center padded aboutme-para">
           
     <div id="my-sidenav">
       <a href="index.html" id="about"> About </a>
       <a href="projects.html" id="projects"> Projects </a>
+      <a href="#" id="login"></a>
     </div>
+  </div>
+  
+  <div class="container-fluid text-center aboutme-para">
+    
     <h1 class="bolded bigtext typewriter">Projecting.</h1>
 
-    <div id="my-carousel" class="carousel slide" data-ride="carousel">
+    <div id="my-carousel" class="carousel slide small-padded" data-ride="carousel">
       <div class="row padded">
         <div class="col-sm-8">
           <div class="carousel-inner">
@@ -75,9 +82,9 @@
           target="_blank"> click here! </a> </p>
           <div class="padded">
             <div class="text-center">
-              <a class="btn btn-info btn-rounded mb-4" data-toggle="modal" data-target="#my-modal"> 
-              Leave A Comment </a>
-              <button onclick="deleteAllComments()" type="button" class="btn">
+              <button id="leave-comment" class="btn btn-info btn-rounded mb-4 disabled" data-toggle="modal" data-target="#my-modal" disabled> 
+                <span> Leave A Comment </span> </button>
+              <button id="comment-delete" onclick="deleteAllComments()" type="button" class="btn" disabled>
                 <span class="glyphicon glyphicon-trash"></span>
               </button>
             </div>
@@ -113,7 +120,7 @@
             <div class="modal-body mx-3">
               <form action="/data" method="POST">
                 <div class="md-form mb-5">
-                  <input type="text" name="comment-name" id="default-name" class="form-control" required>
+                  <input type="text" name="comment-name" id="default-name" class="form-control">
                   <label data-error="wrong" data-success="right" for="default-name"> Your name </label>
                 </div>
                 <div class="md-form mb-5">
@@ -130,3 +137,4 @@
       </div>
     </div>
   </div>
+</body>
