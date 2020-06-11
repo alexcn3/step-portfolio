@@ -45,7 +45,6 @@ async function getComments() {
 async function getRecs() {
   const response = await fetch('/suggestions');
   const recs = await response.json();
-  console.log(recs);
   showRecs(recs);
 }
 
