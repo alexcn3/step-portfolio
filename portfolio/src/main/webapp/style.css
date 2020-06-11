@@ -193,6 +193,11 @@
 
 div#sugs li {
   list-style-type: none;
+  margin-bottom: 5%;
+}
+
+div#sugs.scroll-comments {
+  height: 300px;
 }
 
 .comment-area {
@@ -227,4 +232,12 @@ button.disabled:hover:before {
   content:"Log in to comment!"
 }
 
+.sug-resize {
+  height: 50%;
+  width: 50%;
+}
 
+.pic-padded {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
