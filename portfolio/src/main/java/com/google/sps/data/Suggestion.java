@@ -20,12 +20,14 @@ public final class Suggestion {
   private final long id;
   private final String suggest;
   private final String category;
+  private final String image;
   private final long timestamp;
 
-  public Suggestion(long id, String suggest, String category, long timestamp) {
+  public Suggestion(long id, String suggest, String category, String image, long timestamp) {
     this.id = id;
     this.suggest = suggest;
     this.category = category;
+    this.image = image;
     this.timestamp = timestamp;
   }
 }

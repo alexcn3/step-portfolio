@@ -45,6 +45,7 @@ async function getComments() {
 async function getRecs() {
   const response = await fetch('/suggestions');
   const recs = await response.json();
+  console.log(recs);
   showRecs(recs);
 }
 
@@ -55,7 +56,7 @@ function showRecs(results) {
     recContainer.appendChild(createRecElement(rec));
   });
   if (results.length == 0) {
-    recContainer.innerHTML = "No user suggestions :(";
+    recContainer.innerText = "No user suggestions :(";
   }
 }
 
@@ -63,8 +64,26 @@ function createRecElement(recObject) {
   const liElement = document.createElement('li');
   liElement.classList.add(getRecColor(recObject.category));
   text = recObject.suggest.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  liElement.innerHTML = text;
+  liElement.innerText = text;
+  if (recObject.image) {
+    liElement.appendChild(createImgElement(recObject.image));
+  }
   return liElement;
+}
+
+
+
+function createImgElement(image) {
+  const rowElement = document.createElement('div');
+  rowElement.classList.add('row');
+  const colElement = document.createElement('div');
+  colElement.classList.add('col-sm-12');
+  const imgElement = document.createElement('img');
+  imgElement.classList.add('sug-resize');
+  imgElement.src = image;
+  colElement.appendChild(imgElement);
+  rowElement.appendChild(colElement);
+  return rowElement;
 }
 
 function getRecColor(category) {
@@ -114,6 +133,7 @@ async function deleteAllRecs() {
   const params = new URLSearchParams();
   params.append('type', 'suggestion');
   const response = await fetch('/delete-data', {method: 'POST', body: params});
+  document.getElementById('sugs').classList.remove('in')
 }
 
 
@@ -166,3 +186,13 @@ async function checkLogin() {
 }
 
 
+function fetchBlobstoreUrl() {
+  fetch('/blobstore-url')
+    .then((response) => {
+      return response.text();
+    })
+    .then((imageUploadUrl) => {
+      const messageForm = document.getElementById('suggest-form');
+      messageForm.action = imageUploadUrl;
+    });
+}

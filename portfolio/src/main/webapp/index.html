@@ -9,7 +9,7 @@
   <script src="script.js"></script>
   
 
-<body onload="checkLogin()">
+<body onload="checkLogin(); fetchBlobstoreUrl()">
   <div class="container-fluid text-center aboutme-para">
           
     <div id="my-sidenav">
@@ -80,7 +80,9 @@
                 </div>
                 </div>
             </form>
-            <div id="sugs" class="small-padded row">
+            <div class="small-padded row">
+              <div id="sugs" class="small-padded scroll-comments col-sm-12">
+              </div>
             </div>
           </div>
         </div>
@@ -123,15 +125,18 @@
                     </div>
                   </div>
                   <div class="modal-body mx-3">
-                    <form id="suggest-form" action="/suggestions" method="POST">
-                      <div class="row">
+                    <form id="suggest-form" method="POST" enctype="multipart/form-data">
+                      <div class="row small-padded">
                         <div class="col-sm-9">
                            <label data-error="wrong" data-success="right" for="default-comment"> Your Suggestion </label>
-                           <input type="text" name="suggestion-body" id="default-comment" class="form-control" required>
+                           <input type="text" name="suggestion-body" id="sug-comment" class="form-control" required>
+
+                           <label for="my-image">Select an image:</label>
+                           <input type="file" id="sug-image" name="sug-image" accept="image/*">
                         </div>
                         <div class="col-sm-3">
                           <label data-error="wrong" data-success="right" for="category-select"> Category </label>
-                          <select class="form-control text-center" name="category-select" id="category-select" form="suggest-form" required>
+                          <select class="form-control text-center" name="category-select" id="category-select" form="suggest-form">
                             <option value="music">Music</option>
                             <option value="tv">TV</option>
                             <option value="book">Book</option>
@@ -139,7 +144,7 @@
                         </div>
                       </div>
                       <div class="modal-footer d-flex justify-content-center">
-                        <input class="btn btn-rounded" type="submit"/>
+                        <input id="sug-submit" class="btn btn-rounded" type="submit"/>
                       </div>
                     </form>
                   </div>
