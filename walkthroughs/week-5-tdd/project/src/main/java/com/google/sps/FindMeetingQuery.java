@@ -32,10 +32,10 @@ public final class FindMeetingQuery {
   }
 
 
-  private List<TimeRange> getTimeRanges(Collection<Event> events, MeetingRequest request, boolean optional) {
+  private List<TimeRange> getTimeRanges(Collection<Event> events, MeetingRequest request, boolean includeOptionalAttendees) {
     Set<TimeRange> busySet = new HashSet<>();
     for (Event block : events){
-      if (optional) {
+      if (includeOptionalAttendees) {
         if (oneOf(block.getAttendees(), request.getAttendees()) || oneOf(block.getAttendees(), request.getOptionalAttendees())) {
           busySet.add(block.getWhen());
         }
@@ -69,10 +69,11 @@ public final class FindMeetingQuery {
     freeTime.add(TimeRange.fromStartEnd(start, TimeRange.END_OF_DAY, true));
     return freeTime;
   }
-
-  private boolean oneOf(Set<String> firstList, Collection<String> SecondList) {
+ 
+  /* returns true if an element in the first parameter is also an element in the second parameter*/
+  private boolean oneOf(Set<String> firstList, Collection<String> secondList) {
     for (String item : firstList) {
-      if (SecondList.contains(item)) {
+      if (secondList.contains(item)) {
         return true;
       }
     }
@@ -93,8 +94,7 @@ public final class FindMeetingQuery {
     List<TimeRange> cleanList = new ArrayList<TimeRange>();
     List<TimeRange> sortedBlockedTime = blockedTime.stream().sorted(Comparator.comparing(TimeRange::start)).collect(Collectors.toList());
     for (int i = 0; i < sortedBlockedTime.size(); i++) {
-      try
-      {
+      if (i+1 < sortedBlockedTime.size()) {
         if (sortedBlockedTime.get(i).contains(sortedBlockedTime.get(i+1))) {
           cleanList.add(sortedBlockedTime.get(i));
           i = i + 2;
@@ -104,12 +104,10 @@ public final class FindMeetingQuery {
         } else {
           cleanList.add(sortedBlockedTime.get(i));
         }
+      } else {
+        cleanList.add(sortedBlockedTime.get(i)); 
       }
-      catch (IndexOutOfBoundsException e)
-      {
-        cleanList.add(sortedBlockedTime.get(i));
-      }
-    }
+    } 
     return cleanList;
   }
 }
