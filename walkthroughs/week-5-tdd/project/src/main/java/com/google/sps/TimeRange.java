@@ -51,7 +51,7 @@ public final class TimeRange {
 
   private TimeRange(int start, int duration) {
     this.start = start;
-    this.duration = duration;;
+    this.duration = duration;
   }
 
   /**
